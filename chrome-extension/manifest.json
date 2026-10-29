@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn Engagement Feed Helper",
+  "version": "1.0.32",
+  "description": "Local overlay and best-effort capture helper for the LinkedIn Engagement Feed desktop app.",
+  "action": {
+    "default_title": "LinkedIn Engagement Feed Helper"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "http://127.0.0.1:38421/*",
+    "http://127.0.0.1:38422/*",
+    "http://127.0.0.1:38423/*",
+    "http://127.0.0.1:38424/*",
+    "http://127.0.0.1:38425/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.linkedin.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

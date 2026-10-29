@@ -1,0 +1,43 @@
+{
+  "name": "linkedin-engagement-feed",
+  "version": "1.0.0",
+  "description": "Local-first desktop app for building curated LinkedIn engagement feeds and working them as a human-in-the-loop Done/Skip queue.",
+  "main": "dist-electron/main.js",
+  "type": "module",
+  "scripts": {
+    "prebuild": "node -e \"const fs=require('fs');fs.rmSync('dist-electron',{recursive:true,force:true})\"",
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"tsc -p tsconfig.electron.json --watch\" \"wait-on tcp:5173 file:dist-electron/main.js && cross-env VITE_DEV_SERVER_URL=http://127.0.0.1:5173 electron dist-electron/main.js\"",
+    "build": "tsc --noEmit && tsc -p tsconfig.electron.json && vite build",
+    "start": "electron dist-electron/main.js",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "linkedin",
+    "electron",
+    "engagement",
+    "social-selling",
+    "relationship-marketing",
+    "chrome-extension",
+    "local-first"
+  ],
+  "author": "Satya Janghu <satya@getsatya.com> (https://getsatya.com)",
+  "license": "SEE LICENSE IN LICENSE",
+  "private": true,
+  "dependencies": {
+    "@types/node": "^24.10.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^42.5.0",
+    "lucide-react": "^0.562.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sql.js": "^1.13.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0",
+    "wait-on": "^9.0.3"
+  }
+}
